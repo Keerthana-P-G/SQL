@@ -1,0 +1,43 @@
+Leetcode 175
+
+select p.firstName,p.lastName,a.city,a.state from Person p left join Address a 
+on p.personId=a.personId;
+
+Leetcode 176
+
+select(select distinct salary  from EMPLOYEE 
+order by salary desc limit 1 offset 1) as SecondHighestSalary
+
+Leetcode 178
+
+SELECT score, DENSE_RANK() OVER (ORDER BY score DESC) AS "rank" 
+FROM Scores;
+
+Leetcode 180
+
+select distinct l1.num as ConsecutiveNums from Logs l1, Logs l2, Logs l3
+WHERE l1.num = l2.num
+  AND l2.num = l3.num
+  AND l1.id = l2.id - 1
+  AND l2.id = l3.id - 1;
+
+Leetcode 197
+
+SELECT today.id
+FROM Weather yesterday 
+CROSS JOIN Weather today
+
+WHERE DATEDIFF(today.recordDate,yesterday.recordDate) = 1
+    AND today.temperature > yesterday.temperature;
+
+Leetcode 586 
+
+select customer_number from Orders group by customer_number order by count(customer_number) desc limit 1;
+
+Leetcode 183
+
+SELECT name as Customers from Customers
+where id not in (
+    select customerId
+    from Orders
+);
